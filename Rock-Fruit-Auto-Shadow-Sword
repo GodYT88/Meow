@@ -29,7 +29,35 @@ game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = CFrame.new(-1840, 1
 task.wait(1)
 game.Players.LocalPlayer.Character.HumanoidRootPart.Anchored = true
 
-while wait(0.1) do
+game:GetService("Players").LocalPlayer.Backpack.ChildAdded:Connect(function(AddedChild)
+task.wait()
+if AddedChild.Name == "Blade Kagenou" then
+local HttpService = game:GetService("HttpService")
+        local Webhook_URL = "https://discord.com/api/webhooks/1193238814190227617/Q8N0YB9LjnbJbTnA7gI7bPZ77F82De7YezTIRb6OiH3OmF9nHSfy_zHh8jm1qZCFDd25"
+
+        local response = request({
+            Url = Webhook_URL,
+            Method = 'POST',
+            Headers = {
+                ['Content-Type'] = 'application/json'
+            },
+            Body = HttpService:JSONEncode({
+                ["content"] = "",
+                ["embeds"] = {{
+                    ["title"] = "",
+                    ["description"] = "Rock Fruit Kagenou Blade Notify",
+                    ["type"] = "rich",
+                    ["color"] = tonumber(0xffffff),
+                    ["fields"] = {
+                        {
+                            ["name"] = "",
+                            ["value"] = tostring(game:GetService("Players").LocalPlayer.Name .. " Has Got ".. "Blade Kagenou"),
+                            ["inline"] = true
+                        }
+                    }
+                }}
+            })
+        })
 local args = {
     [1] = "Change",
     [2] = "Blade Kagenou",
@@ -38,3 +66,4 @@ local args = {
 
 game:GetService("ReplicatedStorage"):FindFirstChild("Inventory"):FireServer(unpack(args))
 end
+end)
