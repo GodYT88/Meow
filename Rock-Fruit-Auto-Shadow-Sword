@@ -22,6 +22,9 @@ wait(1.5)
 end
 end)
 
+
+loadstring(game:HttpGet("https://pastebin.com/raw/Yu12RUkY"))()
+
 while wait(0.1) do
 local args = {
     [1] = "Change",
