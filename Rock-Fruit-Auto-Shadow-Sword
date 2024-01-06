@@ -25,7 +25,7 @@ end)
 
 loadstring(game:HttpGet("https://pastebin.com/raw/Yu12RUkY"))()
 task.wait(1)
-game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = CFrame.new(0,1000000,0)
+game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = CFrame.new(-1840, 15000, 1983)
 task.wait(1)
 game.Players.LocalPlayer.Character.HumanoidRootPart.Anchored = true
 
