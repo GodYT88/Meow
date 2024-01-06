@@ -18,7 +18,7 @@ end
 for i = 1,1000 do
 fireclickdetector(workspace["Shadow Sword Click"].ClickDetector)
 end
-wait(1.25)
+wait(1.5)
 end
 end)
 
