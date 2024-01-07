@@ -34,10 +34,10 @@ if game:GetService("Players"):FindFirstChild(Owner) then
   if message == "!Auto" then
    if _G.Clicking == true then
     _G.Clicking = false
-   	game:GetService("ReplicatedStorage").DefaultChatSystemChatEvents.SayMessageRequest:FireServer("Status : false", "All")
+   	game:GetService("ReplicatedStorage").DefaultChatSystemChatEvents.SayMessageRequest:FireServer("Status : Off", "All")
    elseif _G.Clicking == false then
       	_G.Clicking = true
-       game:GetService("ReplicatedStorage").DefaultChatSystemChatEvents.SayMessageRequest:FireServer("Status : true", "All")
+       game:GetService("ReplicatedStorage").DefaultChatSystemChatEvents.SayMessageRequest:FireServer("Status : On", "All")
    end
   elseif message == "!Status" then
    game:GetService("ReplicatedStorage").DefaultChatSystemChatEvents.SayMessageRequest:FireServer("Status : "..tostring(_G.Clicking) , "All")
@@ -57,10 +57,10 @@ game:GetService("ReplicatedStorage"):FindFirstChild("Inventory"):FireServer(unpa
   elseif message == "!DropMain" then
         if _G.DropMain == true then
     _G.DropMain = false
-   	game:GetService("ReplicatedStorage").DefaultChatSystemChatEvents.SayMessageRequest:FireServer("Status : false", "All")
+   	game:GetService("ReplicatedStorage").DefaultChatSystemChatEvents.SayMessageRequest:FireServer("Status : Off", "All")
    elseif _G.DropMain == false then
       	_G.DropMain = true
-       game:GetService("ReplicatedStorage").DefaultChatSystemChatEvents.SayMessageRequest:FireServer("Status : true", "All")
+       game:GetService("ReplicatedStorage").DefaultChatSystemChatEvents.SayMessageRequest:FireServer("Status : On", "All")
    		end
   	end
   end
@@ -74,10 +74,10 @@ if Owner ~= "None" and plr.Name == Owner then
   if message == "!Auto" then
    if _G.Clicking == true then
     _G.Clicking = false
-   	game:GetService("ReplicatedStorage").DefaultChatSystemChatEvents.SayMessageRequest:FireServer("Status : false", "All")
+   	game:GetService("ReplicatedStorage").DefaultChatSystemChatEvents.SayMessageRequest:FireServer("Status : Off", "All")
    elseif _G.Clicking == false then
         _G.Clicking = true
-       game:GetService("ReplicatedStorage").DefaultChatSystemChatEvents.SayMessageRequest:FireServer("Status : true", "All")
+       game:GetService("ReplicatedStorage").DefaultChatSystemChatEvents.SayMessageRequest:FireServer("Status : On", "All")
    end
   elseif message == "!Status" then
    game:GetService("ReplicatedStorage").DefaultChatSystemChatEvents.SayMessageRequest:FireServer("Status : "..tostring(_G.Clicking) , "All")
@@ -97,10 +97,10 @@ game:GetService("ReplicatedStorage"):FindFirstChild("Inventory"):FireServer(unpa
   elseif message == "!DropMain" then
         if _G.DropMain == true then
     _G.DropMain = false
-   	game:GetService("ReplicatedStorage").DefaultChatSystemChatEvents.SayMessageRequest:FireServer("Status : false", "All")
+   	game:GetService("ReplicatedStorage").DefaultChatSystemChatEvents.SayMessageRequest:FireServer("Status : Off", "All")
    elseif _G.DropMain == false then
       	_G.DropMain = true
-       game:GetService("ReplicatedStorage").DefaultChatSystemChatEvents.SayMessageRequest:FireServer("Status : true", "All")
+       game:GetService("ReplicatedStorage").DefaultChatSystemChatEvents.SayMessageRequest:FireServer("Status : On", "All")
    	end
   end
  end)
