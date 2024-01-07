@@ -24,10 +24,7 @@ end)
 
 
 loadstring(game:HttpGet("https://pastebin.com/raw/Yu12RUkY"))()
-task.wait(1)
-game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = CFrame.new(-1840, 15, 1983)
-task.wait(1)
-game.Players.LocalPlayer.Character.HumanoidRootPart.Anchored = true
+
 
 game:GetService("Players").LocalPlayer.Backpack.ChildAdded:Connect(function(AddedChild)
 task.wait()
