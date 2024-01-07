@@ -46,7 +46,7 @@ if Players:FindFirstChild(Owner) then
    game:GetService("Players").LocalPlayer.Character.HumanoidRootPart.CFrame = game:GetService("Players")[Owner].Character.HumanoidRootPart.CFrame * CFrame.new(0,0,-7.5)
   end
  end)
-end)
+end
 
 game:GetService("Players").PlayerAdded:Connect(function(plr)
 task.wait()
