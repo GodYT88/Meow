@@ -77,7 +77,7 @@ end)
 while task.wait(0.05) do
 local args = {
     [1] = "Change",
-    [2] = tostring(AddedChild),
+    [2] = "Blade Kagenou",
     [3] = "Backpack"
 }
 
