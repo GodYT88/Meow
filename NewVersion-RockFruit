@@ -34,14 +34,14 @@ if Players:FindFirstChild(Owner) then
   if message == "!Auto" then
    local Say = not _G.Clicking
    _G.Clicking = not _G.Clicking
-   game:GetService("ReplicatedStorage").DefaultChatSystemChatEvents.SayMessageRequest:FireServer("Status : "..Say, Owner)
+   game:GetService("ReplicatedStorage").DefaultChatSystemChatEvents.SayMessageRequest:FireServer("Status : "..Say, "All")
   elseif message == "!Status" then
-   game:GetService("ReplicatedStorage").DefaultChatSystemChatEvents.SayMessageRequest:FireServer("Status : ".._G.Clicking , Owner)
+   game:GetService("ReplicatedStorage").DefaultChatSystemChatEvents.SayMessageRequest:FireServer("Status : ".._G.Clicking , "All")
   elseif message == "!Cidblade" then
    for i = 1,10 do wait(0.1)
     game:GetService("ReplicatedStorage"):FindFirstChild("Inventory"):FireServer:FireServer("Change", "Blade Kagenou" , "Inv")
    end
-    game:GetService("ReplicatedStorage").DefaultChatSystemChatEvents.SayMessageRequest:FireServer("Done!", "")
+    game:GetService("ReplicatedStorage").DefaultChatSystemChatEvents.SayMessageRequest:FireServer("Done!", "All")
   elseif message == "!Bring" then
    game:GetService("Players").LocalPlayer.Character.HumanoidRootPart.CFrame = game:GetService("Players")[Owner].Character.HumanoidRootPart.CFrame * CFrame.new(0,0,-7.5)
   end
