@@ -1,11 +1,11 @@
+getgenv().Owner = "GodY66TH"
 _G.Clicking = true
-local Players = game:GetService("Players")
-local Player = Players.LocalPlayer
-local Owner = tostring(_G.Owner) or "None"
+local Player = game:GetService("Players").LocalPlayer
+local Owner = getgenv().Owner
 
 spawn(function()
 local Check = false
-while _G.Clicking do
+while _G.Clicking == true do
 if Check == false then
 Player.Character.HumanoidRootPart.CFrame = CFrame.new(-1840, 15, 1983)
 wait(3)
@@ -29,21 +29,27 @@ end)
 
 loadstring(game:HttpGet("https://pastebin.com/raw/Yu12RUkY"))()
 
-if Players:FindFirstChild(Owner) then
- Players[Owner].Chatted:Connect(function(message)
+if game:GetService("Players"):FindFirstChild(Owner) then
+ game:GetService("Players"):FindFirstChild(Owner).Chatted:Connect(function(message)
   if message == "!Auto" then
    local Say = not _G.Clicking
    _G.Clicking = not _G.Clicking
-   game:GetService("ReplicatedStorage").DefaultChatSystemChatEvents.SayMessageRequest:FireServer("Status : "..Say, "All")
+   game:GetService("ReplicatedStorage").DefaultChatSystemChatEvents.SayMessageRequest:FireServer("Status : "..Say, Owner)
   elseif message == "!Status" then
-   game:GetService("ReplicatedStorage").DefaultChatSystemChatEvents.SayMessageRequest:FireServer("Status : ".._G.Clicking , "All")
+   game:GetService("ReplicatedStorage").DefaultChatSystemChatEvents.SayMessageRequest:FireServer("Status : ".._G.Clicking , Owner)
   elseif message == "!Cidblade" then
    for i = 1,10 do wait(0.1)
-    game:GetService("ReplicatedStorage"):FindFirstChild("Inventory"):FireServer:FireServer("Change", "Blade Kagenou" , "Inv")
+    local args = {
+    [1] = "Change",
+    [2] = "Blade Kagenou",
+    [3] = "Inv"
+}
+
+game:GetService("ReplicatedStorage"):FindFirstChild("Inventory"):FireServer(unpack(args))
    end
-    game:GetService("ReplicatedStorage").DefaultChatSystemChatEvents.SayMessageRequest:FireServer("Done!", "All")
+    game:GetService("ReplicatedStorage").DefaultChatSystemChatEvents.SayMessageRequest:FireServer("Done!", Owner)
   elseif message == "!Bring" then
-   game:GetService("Players").LocalPlayer.Character.HumanoidRootPart.CFrame = game:GetService("Players")[Owner].Character.HumanoidRootPart.CFrame * CFrame.new(0,0,-7.5)
+   game:GetService("Players").LocalPlayer.Character.HumanoidRootPart.CFrame = game:GetService("Players"):FindFirstChild(Owner).Character.HumanoidRootPart.CFrame * CFrame.new(0,0,-7.5)
   end
  end)
 end
@@ -60,11 +66,17 @@ if Owner ~= "None" and plr.Name == Owner then
    game:GetService("ReplicatedStorage").DefaultChatSystemChatEvents.SayMessageRequest:FireServer("Status : ".._G.Clicking , Owner)
   elseif message == "!Cidblade" then
    for i = 1,10 do wait(0.1)
-    game:GetService("ReplicatedStorage"):FindFirstChild("Inventory"):FireServer:FireServer("Change", "Blade Kagenou" , "Inv")
+    local args = {
+    [1] = "Change",
+    [2] = "Blade Kagenou",
+    [3] = "Inv"
+}
+
+game:GetService("ReplicatedStorage"):FindFirstChild("Inventory"):FireServer(unpack(args))
    end
     game:GetService("ReplicatedStorage").DefaultChatSystemChatEvents.SayMessageRequest:FireServer("Done!", Owner)
   elseif message == "!Bring" then
-   game:GetService("Players").LocalPlayer.Character.HumanoidRootPart.CFrame = game:GetService("Players")[Owner].Character.HumanoidRootPart.CFrame * CFrame.new(0,0,-7.5)
+   game:GetService("Players").LocalPlayer.Character.HumanoidRootPart.CFrame = game:GetService("Players"):FindFirstChild(Owner).Character.HumanoidRootPart.CFrame * CFrame.new(0,0,-7.5)
   end
  end)
 end
@@ -79,7 +91,7 @@ task.wait(0.1)
 AddedChild.Parent = workspace
 local Handle = AddedChild.PrimaryPart or AddedChild.Handle
 task.wait(0.1)
-Handle.CFrame = game:GetService("Players")[_G.Owner].Character.HumanoidRootPart.CFrame
+Handle.CFrame = game:GetService("Players"):FindFirstChild(Owner).Character.HumanoidRootPart.CFrame
 else
 local args = {
     [1] = "Change",
