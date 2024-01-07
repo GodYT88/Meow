@@ -74,7 +74,7 @@ game:service "Players".LocalPlayer.Idled:connect(
 end)
 
 
-while task.wait(0.05) do
+while task.wait(0.15) do
 local args = {
     [1] = "Change",
     [2] = "Blade Kagenou",
