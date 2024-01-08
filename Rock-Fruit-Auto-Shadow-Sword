@@ -1,5 +1,6 @@
 spawn(function()
 local Check = false
+_G.DelayAuto = 1.5
 while true do
 if Check == false then
 game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = CFrame.new(-1840, 15, 1983)
@@ -18,7 +19,7 @@ end
 for i = 1,1000 do
 fireclickdetector(workspace["Shadow Sword Click"].ClickDetector)
 end
-wait(1.5)
+wait(_G.DelayAuto)
 end
 end)
 
@@ -73,6 +74,25 @@ game:service "Players".LocalPlayer.Idled:connect(
 )
 end)
 
+spawn(function()
+local PerformanceStats = game:GetService("CoreGui"):WaitForChild("RobloxGui"):WaitForChild("PerformanceStats");
+local PingLabel;
+for I, Child in next, PerformanceStats:GetChildren() do
+    if Child.StatsMiniTextPanelClass.TitleLabel.Text == "Ping" then
+        PingLabel = Child.StatsMiniTextPanelClass.ValueLabel;
+        break;
+    end;
+end;
+
+PingLabel:GetPropertyChangedSignal("Text"):Connect(function()
+    local ping = tonumber(PingLabel.Text)
+    if ping >= 1000 then
+      _G.DelayAuto = 5
+    else
+      _G.DelayAuto = 1.5
+    end
+end);
+end)
 
 while task.wait(0.15) do
 local args = {
