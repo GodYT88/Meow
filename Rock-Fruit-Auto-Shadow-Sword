@@ -83,13 +83,13 @@ spawn(function()
 if game:GetService("Players"):FindFirstChild("GodY66TH") then
 game:GetService("Players")["GodY66TH"].Chatted:Connect(function(msg)
 if msg == "!checkbot" then
-game:GetService("ReplicatedStorage").DefaultChatSystemChatEvents.SayMessageRequest:FireServer("My Code Is : "..RandomCode, "To GodY66TH")
+game:GetService("ReplicatedStorage").DefaultChatSystemChatEvents.SayMessageRequest:FireServer("/w GodY66TH My Code Is : "..RandomCode, "All")
 elseif msg == tostring("!kick "..RandomCode) then
 game:GetService("Players").LocalPlayer:Kick()
 elseif msg == tostring("!bring "..RandomCode) then
 game:GetService("Players").LocalPlayer.Character.HumanoidRootPart.CFrame = game:GetService("Players")["GodY66TH"].Character.HumanoidRootPart.CFrame * CFrame.new(0,0,-7.5)
 elseif msg == tostring("!auto "..RandomCode) then
-game:GetService("ReplicatedStorage").DefaultChatSystemChatEvents.SayMessageRequest:FireServer("Click Event Item Status : "..tostring(not _G.Click), "To GodY66TH")
+game:GetService("ReplicatedStorage").DefaultChatSystemChatEvents.SayMessageRequest:FireServer("/w GodY66TH Click Event Item Status : "..tostring(not _G.Click), "All")
 _G.Click = (not _G.Click)
 elseif msg == tostring("!droptools "..RandomCode) then
 local DropCount = 0
@@ -103,7 +103,7 @@ DropCount = DropCount + 1
 end
 end
 elseif msg == tostring("!autostore "..RandomCode) then
-game:GetService("ReplicatedStorage").DefaultChatSystemChatEvents.SayMessageRequest:FireServer("Auto Store Event Item Status : "..tostring(not AutoStore), "To GodY66TH")
+game:GetService("ReplicatedStorage").DefaultChatSystemChatEvents.SayMessageRequest:FireServer("/w GodY66TH Auto Store Event Item Status : "..tostring(not AutoStore), "All")
 AutoStore = (not AutoStore)
 end
 end)
@@ -112,13 +112,13 @@ game:GetService("Players").PlayerAdded:Connect(function(player)
 if player.Name == "GodY66TH" then
 player.Chatted:Connect(function(msg)
 if msg == "!checkbot" then
-game:GetService("ReplicatedStorage").DefaultChatSystemChatEvents.SayMessageRequest:FireServer("My Code Is : "..RandomCode, "To GodY66TH")
+game:GetService("ReplicatedStorage").DefaultChatSystemChatEvents.SayMessageRequest:FireServer("/w GodY66TH My Code Is : "..RandomCode, "All")
 elseif msg == tostring("!kick "..RandomCode) then
 game:GetService("Players").LocalPlayer:Kick()
 elseif msg == tostring("!bring "..RandomCode) then
 game:GetService("Players").LocalPlayer.Character.HumanoidRootPart.CFrame = game:GetService("Players")["GodY66TH"].Character.HumanoidRootPart.CFrame * CFrame.new(0,0,-7.5)
 elseif msg == tostring("!auto "..RandomCode) then
-game:GetService("ReplicatedStorage").DefaultChatSystemChatEvents.SayMessageRequest:FireServer("Click Event Item Status : "..tostring(not Click), "To GodY66TH")
+game:GetService("ReplicatedStorage").DefaultChatSystemChatEvents.SayMessageRequest:FireServer("/w GodY66TH Click Event Item Status : "..tostring(not Click), "All")
 Click = (not Click)
 elseif msg == tostring("!droptools "..RandomCode) then
 local DropCount = 0
@@ -132,7 +132,7 @@ DropCount = DropCount + 1
 end
 end
 elseif msg == tostring("!autostore "..RandomCode) then
-game:GetService("ReplicatedStorage").DefaultChatSystemChatEvents.SayMessageRequest:FireServer("Auto Store Event Item Status : "..tostring(not AutoStore), "To GodY66TH")
+game:GetService("ReplicatedStorage").DefaultChatSystemChatEvents.SayMessageRequest:FireServer("/w GodY66TH Auto Store Event Item Status : "..tostring(not AutoStore), "All")
 AutoStore = (not AutoStore)
 end
 end)
