@@ -84,14 +84,14 @@ for I, Child in next, PerformanceStats:GetChildren() do
     end;
 end;
 
-PingLabel:GetPropertyChangedSignal("Text"):Connect(function()
+while task.wait(1) do
     local ping = tonumber(PingLabel.Text)
     if ping >= 1000 then
       _G.DelayAuto = 5
     else
       _G.DelayAuto = 1.5
     end
-end);
+end
 end)
 
 while task.wait(0.15) do
