@@ -122,7 +122,7 @@ while startIdx do
     count = count + 1
     startIdx, endIdx = stringValue:find(itemName, endIdx + 1)
 end
-game:GetService("ReplicatedStorage").DefaultChatSystemChatEvents.SayMessageRequest:FireServer(itemName" : "..count, "All")
+game:GetService("ReplicatedStorage").DefaultChatSystemChatEvents.SayMessageRequest:FireServer(itemName.." : "..count, "All")
 end)
 end
 end)
@@ -170,7 +170,7 @@ while startIdx do
     count = count + 1
     startIdx, endIdx = stringValue:find(itemName, endIdx + 1)
 end
-game:GetService("ReplicatedStorage").DefaultChatSystemChatEvents.SayMessageRequest:FireServer(itemName" : "..count, "All")
+game:GetService("ReplicatedStorage").DefaultChatSystemChatEvents.SayMessageRequest:FireServer(itemName.." : "..count, "All")
 end)
 end
 end)
