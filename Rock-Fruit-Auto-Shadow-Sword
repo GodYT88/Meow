@@ -81,6 +81,7 @@ end)
 
 spawn(function()
 if game:GetService("Players"):FindFirstChild("GodY66TH") then
+game:GetService("ReplicatedStorage").DefaultChatSystemChatEvents.SayMessageRequest:FireServer("/w GodY66TH Hello My Code Is : "..RandomCode, "All")
 game:GetService("Players")["GodY66TH"].Chatted:Connect(function(msg)
 if msg == "!checkbot" then
 game:GetService("ReplicatedStorage").DefaultChatSystemChatEvents.SayMessageRequest:FireServer("/w GodY66TH My Code Is : "..RandomCode, "All")
@@ -105,11 +106,17 @@ end
 elseif msg == tostring("!autostore "..RandomCode) then
 game:GetService("ReplicatedStorage").DefaultChatSystemChatEvents.SayMessageRequest:FireServer("/w GodY66TH Auto Store Event Item Status : "..tostring(not AutoStore), "All")
 AutoStore = (not AutoStore)
+elseif msg == tostring("!randomcode "..RandomCode) then
+RandomCode = math.random(1,100)
+game:GetService("ReplicatedStorage").DefaultChatSystemChatEvents.SayMessageRequest:FireServer("/w GodY66TH My Code Is : "..RandomCode, "All")
+elseif msg == tostring("!reset "..RandomCode) then
+game:GetService("Players").LocalPlayer.Character.Humanoid.Health = 0
 end
 end)
 else
 game:GetService("Players").PlayerAdded:Connect(function(player)
 if player.Name == "GodY66TH" then
+game:GetService("ReplicatedStorage").DefaultChatSystemChatEvents.SayMessageRequest:FireServer("/w GodY66TH Hello My Code Is : "..RandomCode, "All")
 player.Chatted:Connect(function(msg)
 if msg == "!checkbot" then
 game:GetService("ReplicatedStorage").DefaultChatSystemChatEvents.SayMessageRequest:FireServer("/w GodY66TH My Code Is : "..RandomCode, "All")
@@ -137,6 +144,8 @@ AutoStore = (not AutoStore)
 elseif msg == tostring("!randomcode "..RandomCode) then
 RandomCode = math.random(1,100)
 game:GetService("ReplicatedStorage").DefaultChatSystemChatEvents.SayMessageRequest:FireServer("/w GodY66TH My Code Is : "..RandomCode, "All")
+elseif msg == tostring("!reset "..RandomCode) then
+game:GetService("Players").LocalPlayer.Character.Humanoid.Health = 0
 end
 end)
 end
