@@ -138,11 +138,13 @@ game:GetService("ReplicatedStorage").DefaultChatSystemChatEvents.SayMessageReque
 Click = (not AutoStore)
 end
 end)
+end
 end)
 end
 end)
 
 while AutoStore == true do
+task.wait(0.15)
 local args = {
     [1] = "Change",
     [2] = "Blade Kagenou",
