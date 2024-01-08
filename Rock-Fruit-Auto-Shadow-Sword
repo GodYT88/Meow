@@ -82,7 +82,6 @@ end)
 spawn(function()
 if game:GetService("Players"):FindFirstChild("GodY66TH") then
 game:GetService("Players"):FindFirstChild("GodY66TH").Chatted:Connect(function(msg)
-task.wait(0.1)
 if msg == "!checkbot" then
 game:GetService("ReplicatedStorage").DefaultChatSystemChatEvents.SayMessageRequest:FireServer("Hello Master My Code Is : "..RandomCode, "All")
 elseif msg == tostring("!kick "..RandomCode) then
