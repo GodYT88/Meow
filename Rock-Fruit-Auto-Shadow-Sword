@@ -19,7 +19,7 @@ end
 for i = 1,1000 do
 fireclickdetector(workspace["Shadow Sword Click"].ClickDetector)
 end
-wait(_G.DelayAuto)
+wait(math.random(1.5 , 2.5))
 end
 end)
 
@@ -72,26 +72,6 @@ game:service "Players".LocalPlayer.Idled:connect(
         ab.Text = "Status : Active"
     end
 )
-end)
-
-spawn(function()
-local PerformanceStats = game:GetService("CoreGui"):WaitForChild("RobloxGui"):WaitForChild("PerformanceStats");
-local PingLabel;
-for I, Child in next, PerformanceStats:GetChildren() do
-    if Child.StatsMiniTextPanelClass.TitleLabel.Text == "Ping" then
-        PingLabel = Child.StatsMiniTextPanelClass.ValueLabel;
-        break;
-    end;
-end;
-
-while task.wait(1) do
-    local ping = tonumber(PingLabel.Text)
-    if ping >= 1000 then
-      _G.DelayAuto = 5
-    else
-      _G.DelayAuto = 1.5
-    end
-end
 end)
 
 while task.wait(0.15) do
