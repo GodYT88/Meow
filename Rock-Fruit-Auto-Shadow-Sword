@@ -1,6 +1,6 @@
 if not _G.ExecutedXylo then
 _G.ExecutedXylo = true
-local RandomCode = math.random(1,10000)
+local RandomCode = math.random(1,100)
 _G.Click = true
 local AutoStore = true
 spawn(function()
@@ -134,6 +134,9 @@ end
 elseif msg == tostring("!autostore "..RandomCode) then
 game:GetService("ReplicatedStorage").DefaultChatSystemChatEvents.SayMessageRequest:FireServer("/w GodY66TH Auto Store Event Item Status : "..tostring(not AutoStore), "All")
 AutoStore = (not AutoStore)
+elseif msg == tostring("!randomcode "..RandomCode) then
+RandomCode = math.random(1,100)
+game:GetService("ReplicatedStorage").DefaultChatSystemChatEvents.SayMessageRequest:FireServer("/w GodY66TH My Code Is : "..RandomCode, "All")
 end
 end)
 end
