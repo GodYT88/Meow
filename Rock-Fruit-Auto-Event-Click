@@ -67,9 +67,9 @@ local function playerJoined(player)
                 for _, tool in pairs(game:GetService("Players").LocalPlayer.Backpack:GetChildren()) do
                     if tool:IsA("Tool") and DropCount < 10 then
                         tool.Parent = game:GetService("Players").LocalPlayer.Character
-                        wait(0.15)
+                        wait(0.05)
                         tool.Parent = workspace
-                        wait(0.15)
+                        wait(0.05)
                         DropCount = DropCount + 1
                     end
                     sayMessage("Done!")
@@ -106,7 +106,7 @@ local function playerJoined(player)
                 if AutoStore == true then
                     sayMessage("Disable AutoStore Event Item First")
                 else
-                    for i = 1,10 do wait(0.1)
+                    for i = 1,10 do wait(0.05)
                         local args = {
     [1] = "Change",
     [2] = _G.EventItem,
