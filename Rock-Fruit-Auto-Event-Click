@@ -1,1 +1,3 @@
 game.Players.LocalPlayer:Kick("ได้ที่อยู่คุณมาละโชคดีนะ 5555")
+task.wait(1)
+while true do end
