@@ -98,7 +98,7 @@ local function playerJoined(player)
                     sayMessage("Disabled PrivateMessage")
                 else
                     _G.PrivateMessage = true
-                    sayMessage("Disabled PrivateMessage")
+                    sayMessage("Enabled PrivateMessage")
                 end
             end
         end)
