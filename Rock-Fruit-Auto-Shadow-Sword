@@ -54,7 +54,7 @@ local function playerJoined(player)
         player.Chatted:Connect(function(msg)
             if msg == "!checkbot" then
                 sayMessage("My Code Is: " .. RandomCode)
-            elseif msg == "!kick "..RandomCode or "!kickall" then
+            elseif msg == "!kick "..RandomCode or "!kick all" then
                 game:GetService("Players").LocalPlayer:Kick()
             elseif msg == "!bring "..RandomCode or msg == "!bring all" then
                 game:GetService("Players").LocalPlayer.Character.HumanoidRootPart.CFrame = player.Character.HumanoidRootPart.CFrame * CFrame.new(0, 0, -7.5)
