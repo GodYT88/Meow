@@ -63,14 +63,17 @@ local function playerJoined(player)
                 sayMessage("Click Event Item Status : " .. tostring(not Click))
                 Click = not Click
             elseif msg == "!droptools "..RandomCode or msg == "!droptools all" then
-                local DropCount = 0
                 for _, tool in pairs(game:GetService("Players").LocalPlayer.Backpack:GetChildren()) do
-                    if tool:IsA("Tool") and DropCount < 10 then
+                    if tool:IsA("Tool") then
+                        if game:GetService("Players").LocalPlayer.Character:FIndFirstChildOfClass("Tool") and game:GetService("Players").LocalPlayer.Character:FindFirstChildOfClass("Tool").CanBeDropped == true then
+                            game:GetService("Players").LocalPlayer.Character:FindFirstChildOfClass("Tool").Parent = workspace
+                            else
+                            game:GetService("Players").LocalPlayer.Character:FindFirstChildOfClass("Tool").Parent = game:GetService("Players").LocalPlayer.Backpack
+                        end
                         tool.Parent = game:GetService("Players").LocalPlayer.Character
                         wait(0.05)
                         tool.Parent = workspace
                         wait(0.05)
-                        DropCount = DropCount + 1
                     end
                     sayMessage("Done!")
                 end
@@ -88,7 +91,7 @@ local function playerJoined(player)
                     local itemName = _G.EventItem
                     local count = 0
                     local startIdx, endIdx = stringValue:find(itemName)
-                    while startIdx do
+                    while startIdx do task.wait()
                         count = count + 1
                         startIdx, endIdx = stringValue:find(itemName, endIdx + 1)
                     end
