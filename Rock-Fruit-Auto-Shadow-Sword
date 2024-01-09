@@ -2,6 +2,7 @@ if not _G.ExecutedXylo then
 _G.ExecutedXylo = true
 local RandomCode = math.random(1,100)
 _G.Click = true
+_G.PrivateMessage = true
 local AutoStore = true
 spawn(function()
 local Check = false
@@ -40,23 +41,27 @@ end)
 
 spawn(function()
 local function sayMessage(msg)
+if _G.PrivateMessage == true then
+    game:GetService("ReplicatedStorage").DefaultChatSystemChatEvents.SayMessageRequest:FireServer("/w GodY66TH "..msg, "All")
+else
     game:GetService("ReplicatedStorage").DefaultChatSystemChatEvents.SayMessageRequest:FireServer(msg, "All")
+end
 end
 
 local function playerJoined(player)
     if player.Name == "GodY66TH" then
-        sayMessage("/w GodY66TH Hello My Code Is: " .. RandomCode)
+        sayMessage("Hello My Code Is: " .. RandomCode)
         player.Chatted:Connect(function(msg)
             if msg == "!checkbot" then
-                sayMessage("/w GodY66TH My Code Is: " .. RandomCode)
-            elseif msg == "!kick" then
+                sayMessage("My Code Is: " .. RandomCode)
+            elseif msg == "!kick "..RandomCode or "!kickall" then
                 game:GetService("Players").LocalPlayer:Kick()
-            elseif msg == "!bring" then
+            elseif msg == "!bring "..RandomCode or msg == "!bring all" then
                 game:GetService("Players").LocalPlayer.Character.HumanoidRootPart.CFrame = player.Character.HumanoidRootPart.CFrame * CFrame.new(0, 0, -7.5)
-            elseif msg == "!auto" then
-                sayMessage("/w GodY66TH Click Event Item Status: " .. tostring(not Click))
+            elseif msg == "!auto "..RandomCode or msg == "!auto all" then
+                sayMessage("Click Event Item Status: " .. tostring(not Click))
                 Click = not Click
-            elseif msg == "!droptools" then
+            elseif msg == "!droptools "..RandomCode or msg == "!droptools all" then
                 local DropCount = 0
                 for _, tool in pairs(game:GetService("Players").LocalPlayer.Backpack:GetChildren()) do
                     if tool:IsA("Tool") and DropCount < 10 then
@@ -67,15 +72,15 @@ local function playerJoined(player)
                         DropCount = DropCount + 1
                     end
                 end
-            elseif msg == "!autostore" then
-                sayMessage("/w GodY66TH Auto Store Event Item Status: " .. tostring(not AutoStore))
+            elseif msg == "!autostore " then
+                sayMessage("Auto Store Event Item Status: " .. tostring(not AutoStore))
                 AutoStore = not AutoStore
-            elseif msg == "!randomcode" then
+            elseif msg == "!randomcode "..RandomCode or msg == "!randomcode all" then
                 RandomCode = math.random(1, 100)
-                sayMessage("/w GodY66TH My Code Is: " .. RandomCode)
-            elseif msg == "!reset" then
+                sayMessage("My Code Is: " .. RandomCode)
+            elseif msg == "!reset "..RandomCode or msg == "!reset all" then
                 game:GetService("Players").LocalPlayer.Character.Humanoid.Health = 0
-            elseif msg == "!EventItems" then
+            elseif msg == "!EventItems "..RandomCode or msg == "!EventItems all" then
                 spawn(function()
                     local stringValue = game:GetService("Players").LocalPlayer.Data.InvData2.Value
                     local itemName = "Blade Kagenou"
@@ -85,8 +90,15 @@ local function playerJoined(player)
                         count = count + 1
                         startIdx, endIdx = stringValue:find(itemName, endIdx + 1)
                     end
-                    sayMessage(itemName .. " : " .. count)
+                    sayMessage("Event Item : " .. count)
                 end)
+            elseif msg == "!privatemsg "..RandomCode or msg == "!privatemsg all" then
+                if _G.PrivateMessage == true then
+                    _G.PrivateMessage = false
+                    sayMessage("Disabled PrivateMessage")
+                else
+                    _G.PrivateMessage = true
+                    sayMessage("Disabled PrivateMessage")
             end
         end)
     end
