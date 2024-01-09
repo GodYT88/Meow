@@ -102,7 +102,7 @@ local function playerJoined(player)
                     sayMessage("Enabled PrivateMessage")
                 end
             elseif msg == "!geteventitem "..RandomCode then
-                if AutoStore == true
+                if AutoStore == true then
                     sayMessage("Disable AutoStore Event Item First")
                 else
                     for i = 1,10 do
