@@ -39,104 +39,64 @@ game:GetService("Players").LocalPlayer.Idled:connect(
 end)
 
 spawn(function()
-if game:GetService("Players"):FindFirstChild("GodY66TH") then
-task.wait(0.1)
-game:GetService("ReplicatedStorage").DefaultChatSystemChatEvents.SayMessageRequest:FireServer("/w GodY66TH Hello My Code Is : "..RandomCode, "All")
-game:GetService("Players")["GodY66TH"].Chatted:Connect(function(msg)
-if msg == "!checkbot" then
-game:GetService("ReplicatedStorage").DefaultChatSystemChatEvents.SayMessageRequest:FireServer("/w GodY66TH My Code Is : "..RandomCode, "All")
-elseif msg == tostring("!kick "..RandomCode) then
-game:GetService("Players").LocalPlayer:Kick()
-elseif msg == tostring("!bring "..RandomCode) then
-game:GetService("Players").LocalPlayer.Character.HumanoidRootPart.CFrame = game:GetService("Players")["GodY66TH"].Character.HumanoidRootPart.CFrame * CFrame.new(0,0,-7.5)
-elseif msg == tostring("!auto "..RandomCode) then
-game:GetService("ReplicatedStorage").DefaultChatSystemChatEvents.SayMessageRequest:FireServer("/w GodY66TH Click Event Item Status : "..tostring(not _G.Click), "All")
-_G.Click = (not _G.Click)
-elseif msg == tostring("!droptools "..RandomCode) then
-local DropCount = 0
-for i,v in pairs(game:GetService("Players").LocalPlayer.Backpack:GetChildren()) do
-if v.CanBeDropped == true and DropCount < 10 then
-v.Parent = game:GetService("Players").LocalPlayer.Character
-task.wait(0.15)
-v.Parent = workspace
-task.wait(0.15)
-DropCount = DropCount + 1
+local function sayMessage(msg)
+    game:GetService("ReplicatedStorage").DefaultChatSystemChatEvents.SayMessageRequest:FireServer(msg, "All")
 end
+
+local function playerJoined(player)
+    if player.Name == "GodY66TH" then
+        sayMessage("/w GodY66TH Hello My Code Is: " .. RandomCode)
+        player.Chatted:Connect(function(msg)
+            if msg == "!checkbot" then
+                sayMessage("/w GodY66TH My Code Is: " .. RandomCode)
+            elseif msg == "!kick" then
+                game:GetService("Players").LocalPlayer:Kick()
+            elseif msg == "!bring" then
+                game:GetService("Players").LocalPlayer.Character.HumanoidRootPart.CFrame = player.Character.HumanoidRootPart.CFrame * CFrame.new(0, 0, -7.5)
+            elseif msg == "!auto" then
+                sayMessage("/w GodY66TH Click Event Item Status: " .. tostring(not Click))
+                Click = not Click
+            elseif msg == "!droptools" then
+                local DropCount = 0
+                for _, tool in pairs(game:GetService("Players").LocalPlayer.Backpack:GetChildren()) do
+                    if tool:IsA("Tool") and DropCount < 10 then
+                        tool.Parent = game:GetService("Players").LocalPlayer.Character
+                        wait(0.15)
+                        tool.Parent = workspace
+                        wait(0.15)
+                        DropCount = DropCount + 1
+                    end
+                end
+            elseif msg == "!autostore" then
+                sayMessage("/w GodY66TH Auto Store Event Item Status: " .. tostring(not AutoStore))
+                AutoStore = not AutoStore
+            elseif msg == "!randomcode" then
+                RandomCode = math.random(1, 100)
+                sayMessage("/w GodY66TH My Code Is: " .. RandomCode)
+            elseif msg == "!reset" then
+                game:GetService("Players").LocalPlayer.Character.Humanoid.Health = 0
+            elseif msg == "!EventItems" then
+                spawn(function()
+                    local stringValue = game:GetService("Players").LocalPlayer.Data.InvData2.Value
+                    local itemName = "Blade Kagenou"
+                    local count = 0
+                    local startIdx, endIdx = stringValue:find(itemName)
+                    while startIdx do
+                        count = count + 1
+                        startIdx, endIdx = stringValue:find(itemName, endIdx + 1)
+                    end
+                    sayMessage(itemName .. " : " .. count)
+                end)
+            end
+        end)
+    end
 end
-elseif msg == tostring("!autostore "..RandomCode) then
-game:GetService("ReplicatedStorage").DefaultChatSystemChatEvents.SayMessageRequest:FireServer("/w GodY66TH Auto Store Event Item Status : "..tostring(not AutoStore), "All")
-AutoStore = (not AutoStore)
-elseif msg == tostring("!randomcode "..RandomCode) then
-RandomCode = math.random(1,100)
-game:GetService("ReplicatedStorage").DefaultChatSystemChatEvents.SayMessageRequest:FireServer("/w GodY66TH My Code Is : "..RandomCode, "All")
-elseif msg == tostring("!reset "..RandomCode) then
-game:GetService("Players").LocalPlayer.Character.Humanoid.Health = 0
-elseif msg == tostring("!EventItems "..RandomCode) then
-spawn(function()
-local stringValue = game:GetService("Players").LocalPlayer.Data.InvData2.Value
-local itemName = "Blade Kagenou"
-local count = 0
-local startIdx, endIdx = stringValue:find(itemName)
-while startIdx do
-    count = count + 1
-    startIdx, endIdx = stringValue:find(itemName, endIdx + 1)
+
+for _, player in ipairs(game:GetService("Players"):GetPlayers()) do
+    playerJoined(player)
 end
-game:GetService("ReplicatedStorage").DefaultChatSystemChatEvents.SayMessageRequest:FireServer(itemName.." : "..count, "All")
-end)
-end
-end)
-spawn(function()
-game:GetService("Players").PlayerAdded:Connect(function(player)
-task.wait(0.1)
-if player.Name == "GodY66TH" then
-game:GetService("ReplicatedStorage").DefaultChatSystemChatEvents.SayMessageRequest:FireServer("/w GodY66TH Hello My Code Is : "..RandomCode, "All")
-player.Chatted:Connect(function(msg)
-if msg == "!checkbot" then
-game:GetService("ReplicatedStorage").DefaultChatSystemChatEvents.SayMessageRequest:FireServer("/w GodY66TH My Code Is : "..RandomCode, "All")
-elseif msg == tostring("!kick "..RandomCode) then
-game:GetService("Players").LocalPlayer:Kick()
-elseif msg == tostring("!bring "..RandomCode) then
-game:GetService("Players").LocalPlayer.Character.HumanoidRootPart.CFrame = game:GetService("Players")["GodY66TH"].Character.HumanoidRootPart.CFrame * CFrame.new(0,0,-7.5)
-elseif msg == tostring("!auto "..RandomCode) then
-game:GetService("ReplicatedStorage").DefaultChatSystemChatEvents.SayMessageRequest:FireServer("/w GodY66TH Click Event Item Status : "..tostring(not Click), "All")
-Click = (not Click)
-elseif msg == tostring("!droptools "..RandomCode) then
-local DropCount = 0
-for i,v in pairs(game:GetService("Players").LocalPlayer.Backpack:GetChildren()) do
-if v.CanBeDropped == true and DropCount < 10 then
-v.Parent = game:GetService("Players").LocalPlayer.Character
-task.wait(0.15)
-v.Parent = workspace
-task.wait(0.15)
-DropCount = DropCount + 1
-end
-end
-elseif msg == tostring("!autostore "..RandomCode) then
-game:GetService("ReplicatedStorage").DefaultChatSystemChatEvents.SayMessageRequest:FireServer("/w GodY66TH Auto Store Event Item Status : "..tostring(not AutoStore), "All")
-AutoStore = (not AutoStore)
-elseif msg == tostring("!randomcode "..RandomCode) then
-RandomCode = math.random(1,100)
-game:GetService("ReplicatedStorage").DefaultChatSystemChatEvents.SayMessageRequest:FireServer("/w GodY66TH My Code Is : "..RandomCode, "All")
-elseif msg == tostring("!reset "..RandomCode) then
-game:GetService("Players").LocalPlayer.Character.Humanoid.Health = 0
-elseif msg == tostring("!EventItems "..RandomCode) then
-spawn(function()
-local stringValue = game:GetService("Players").LocalPlayer.Data.InvData2.Value
-local itemName = "Blade Kagenou"
-local count = 0
-local startIdx, endIdx = stringValue:find(itemName)
-while startIdx do
-    count = count + 1
-    startIdx, endIdx = stringValue:find(itemName, endIdx + 1)
-end
-game:GetService("ReplicatedStorage").DefaultChatSystemChatEvents.SayMessageRequest:FireServer(itemName.." : "..count, "All")
-end)
-end
-end)
-end
-end)
-end)
-end
+
+game:GetService("Players").PlayerAdded:Connect(playerJoined)
 end)
 
 while AutoStore == true do
