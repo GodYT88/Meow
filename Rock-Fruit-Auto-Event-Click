@@ -64,7 +64,7 @@ local function playerJoined(player)
                 Click = not Click
             elseif msg == "!droptools "..RandomCode or msg == "!droptools all" then
                 for _, tool in pairs(game:GetService("Players").LocalPlayer.Backpack:GetChildren()) do
-                    if tool:IsA("Tool") then
+                    if tool:IsA("Tool") and tool.CanBeDropped == true then
                         if game:GetService("Players").LocalPlayer.Character:FIndFirstChildOfClass("Tool") then
                             game:GetService("Players").LocalPlayer.Character:FindFirstChildOfClass("Tool").Parent = game:GetService("Players").LocalPlayer.Backpack
                         end
