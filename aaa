@@ -1,0 +1,200 @@
+-- Global Varible
+_G.FlingStatus = false
+_G.SpinPower = 25
+_G.MultiPower = 1
+
+-- Varible
+local Plr = game:GetService("Players").LocalPlayer
+local Mouse = Plr:GetMouse()
+
+-- UI
+
+local Library = loadstring(game:HttpGet("https://raw.githubusercontent.com/xHeptc/Kavo-UI-Library/main/source.lua"))()
+local Window = Library.CreateLib("GodY - Steep Steps", "DarkTheme")
+
+
+local Tab = Window:NewTab("Main")
+local Tab2 = Window:NewTab("Settings")
+local Status = Tab:NewSection("Status")
+local FlingStatus = Status:NewLabel("Fling : Off")
+local PowerStatus = Status:NewLabel("Power : " .. _G.SpinPower)
+
+local Button = Tab:NewSection("Buttons")
+Button:NewLabel("R - Destroy Ladder")
+Button:NewLabel("T - Up Power")
+Button:NewLabel("Y - Down Power")
+Button:NewLabel("F - Teleport Ladder to Mouse")
+Button:NewLabel("U - Teleport Ladder to Near Mouse")
+Button:NewLabel("Q - Freeze Ladder")
+
+local Settings = Tab2:NewSection("Settings")
+Settings:NewKeybind("Open/Close UI", "NOTHING", Enum.KeyCode.Delete, function()
+	Library:ToggleUI()
+end)
+
+-- Script
+
+if not _G.FlingStatus then
+    spawn(function()
+    _G.FlingStatus = false
+    _G.SpinPower = 25
+game:GetService("UserInputService").InputBegan:connect(function(Key,Chat)
+    if Chat then
+    return
+        elseif Key.KeyCode == Enum.KeyCode.E then
+            if _G.FlingStatus == true then
+                _G.FlingStatus = false
+            elseif _G.FlingStatus == false then
+                _G.FlingStatus = true
+            end
+        elseif Key.KeyCode == Enum.KeyCode.F then
+            if _G.FlingStatus == true then
+                local pos1 = Mouse.Hit+Vector3.new(0,3.5,0)
+                local pos2 = Vector3.new(pos1.X, pos1.Y, pos1.Z)
+                local OwnLadder = game:GetService("Workspace").playerPlaced[tostring(game.Players.LocalPlayer.Name .. "_ladder")]
+                OwnLadder.Main.BodyPosition.Position = pos2
+                else
+                local OwnLadder = game:GetService("Workspace").playerPlaced[tostring(game.Players.LocalPlayer.Name .. "_ladder")]
+                if not OwnLadder.Main:FindFirstChild("BodyPosition") then
+                local Fling = Instance.new("BodyPosition" , OwnLadder.Main)
+                Fling.Position = OwnLadder.Main.Position
+                Fling.MaxForce = Vector3.new(9e99,9e99,9e99)
+                Fling.P = 100000
+
+                else
+                local pos1 = Mouse.Hit+Vector3.new(0,3.5,0)
+                local pos2 = Vector3.new(pos1.X, pos1.Y, pos1.Z)
+                local OwnLadder = game:GetService("Workspace").playerPlaced[tostring(game.Players.LocalPlayer.Name .. "_ladder")]
+                OwnLadder.Main.BodyPosition.Position = pos2
+                end
+            end
+        elseif Key.KeyCode == Enum.KeyCode.R then
+                local OwnLadder = game:GetService("Workspace").playerPlaced[tostring(game.Players.LocalPlayer.Name .. "_ladder")]
+            if not OwnLadder.Main:FindFirstChild("BodyPosition") then
+                local Fling = Instance.new("BodyPosition" , OwnLadder.Main)
+                Fling.Position = Vector3.new(0 ,workspace.FallenPartsDestroyHeight + 100000 ,0)
+                Fling.MaxForce = Vector3.new(9e99,9e99,9e99)
+                Fling.P = 150000
+                local Fling2 = Instance.new("BodyGyro" , OwnLadder.Main)
+                Fling2.MaxTorque = Vector3.new(1e8,1e8,1e8)
+                wait(0.25)
+                Fling.Position = Vector3.new(-10000 ,workspace.FallenPartsDestroyHeight - 1 ,0)
+                else
+                OwnLadder.Main.BodyPosition.Position = Vector3.new(0 ,workspace.FallenPartsDestroyHeight + 1000000 ,0)
+                wait(0.5)
+                OwnLadder.Main.BodyPosition.Position = Vector3.new(-100000, workspace.FallenPartsDestroyHeight - 1 ,0)
+        end
+        elseif Key.KeyCode == Enum.KeyCode.T then
+            if _G.SpinPower >= 9999 then
+                _G.SpinPower = _G.SpinPower + 2500
+            elseif _G.SpinPower >= 999 then
+                _G.SpinPower = _G.SpinPower + 250
+            else
+                _G.SpinPower = _G.SpinPower + 25
+            end
+        elseif Key.KeyCode == Enum.KeyCode.Y then
+            if _G.SpinPower >= 9999 then
+                _G.SpinPower = _G.SpinPower - 2500
+            elseif _G.SpinPower >= 999 then
+                _G.SpinPower = _G.SpinPower - 250
+            else
+                _G.SpinPower = _G.SpinPower - 25
+            end
+        elseif Key.KeyCode == Enum.KeyCode.U then
+local Times = 0
+local TimesE = 1
+for i,v in pairs(game:GetService("Players"):GetChildren()) do
+if v.Name ~= Plr.Name then
+pcall(function()
+local pos1 = Mouse.Hit+Vector3.new(0,2,0)
+local pos2 = Vector3.new(pos1.X , pos1.Y , pos1.Z)
+local Distance = (v.Character.HumanoidRootPart.Position - pos2).Magnitude
+if Distance < 10 then
+if Times ~= TimesE then
+local OwnLadder = game:GetService("Workspace").playerPlaced[tostring(game.Players.LocalPlayer.Name .. "_ladder")]
+OwnLadder.Main.BodyPosition.Position = v.Character.HumanoidRootPart.Position
+Times = Times + 1
+end
+end
+end)
+end
+end
+elseif Key.KeyCode == Enum.KeyCode.Q then
+local OwnLadder = game:GetService("Workspace").playerPlaced[tostring(game.Players.LocalPlayer.Name .. "_ladder")]
+if OwnLadder.Main.Anchored == false then
+local Velocity = Instance.new("BodyVelocity" , OwnLadder.Main)
+Velocity.MaxForce = Vector3.new(9e99,9e99,9e99)
+Velocity.Velocity = Vector3.new(0,0,0)
+wait(0.1)
+OwnLadder.Main.Anchored = true
+elseif OwnLadder.Main.Anchored == true then
+OwnLadder.Main.Anchored = false
+OwnLadder.Main.BodyVelocity:Destroy()
+end
+end
+end)
+
+game:GetService("Workspace").playerPlaced.ChildAdded:connect(function(part)
+    if part.Name == tostring(game.Players.LocalPlayer.Name .. "_ladder") then
+        if _G.FlingStatus == true then
+            wait(0.25)
+        local PartPosition = part.Main.Position
+        local Fling = Instance.new("BodyPosition" , part.Main)
+        Fling.Position = PartPosition
+        Fling.MaxForce = Vector3.new(9e99,9e99,9e99)
+        Fling.P = 100000
+        local Fling2 = Instance.new("BodyAngularVelocity" , part.Main)
+        Fling2.P = 9e99
+        Fling2.MaxTorque = Vector3.new(0,9e99,0)
+        Fling2.AngularVelocity = Vector3.new(0,_G.SpinPower * _G.MultiPower,0)
+        local BodyGyro = Instance.new("BodyGyro" , part.Main)
+        BodyGyro.CFrame = BodyGyro.CFrame * CFrame.Angles(math.rad(180),math.rad(90),math.rad(90))
+        BodyGyro.MaxTorque = Vector3.new(40000000,10000,40000000)
+        BodyGyro.CFrame = BodyGyro.CFrame * CFrame.Angles(0,math.rad(90),0)
+        end
+    end
+end)
+
+while wait() do
+    local OnOff = FlingStatus
+    local Power = PowerStatus
+    if _G.FlingStatus == true then
+        if _G.SpinPower <= 99999 then
+        OnOff:UpdateLabel("Status Fling : On")
+        Power:UpdateLabel(tostring("Power : ".._G.SpinPower * _G.MultiPower))
+        else
+        OnOff:UpdateLabel("Status Fling : On")
+        Power:UpdateLabel(tostring("Power : ".._G.SpinPower * _G.MultiPower).." Max")
+        end
+    elseif _G.FlingStatus == false then
+        if _G.SpinPower <= 99999 then
+        OnOff:UpdateLabel("Status Fling : Off")
+        Power:UpdateLabel(tostring("Power : ".._G.SpinPower * _G.MultiPower))
+        else
+        OnOff:UpdateLabel("Status Fling : Off")
+        Power:UpdateLabel(tostring("Power : ".._G.SpinPower * _G.MultiPower).." Max")
+        end
+    end
+end
+end)
+spawn(function()
+while wait() do
+    pcall(function()
+    if game.Players.LocalPlayer.Character.HumanoidRootPart.Anchored == true then
+        local OwnLadder = game:GetService("Workspace").playerPlaced[tostring(game.Players.LocalPlayer.Name .. "_ladder")]
+        OwnLadder.Main.BodyPosition.Position = game.Players.LocalPlayer.Character.HumanoidRootPart.Position+Vector3.new(0,5000,0)
+    end
+    end)
+end
+end)
+
+spawn(function()
+while wait() do
+    if _G.SpinPower >= 100001 then
+        _G.SpinPower = 50
+    elseif _G.SpinPower <= 0 then
+        _G.SpinPower = 25
+    end
+end
+end)
+end
