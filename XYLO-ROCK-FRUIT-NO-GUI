@@ -29,6 +29,7 @@ end
 for i = 1,1000 do
 fireclickdetector(EventItemPath.ClickDetector)
 end
+print("Done Clicked")
 wait(math.random(1.5 , 2.5))
 end
 end)
