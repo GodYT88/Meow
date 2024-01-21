@@ -1,0 +1,7 @@
+for i,v in pairs(workspace:GetChildren()) do
+if v.Name == "Part" or v.Name == "EasterEgg" and v:FindFirstChildOfClass("ClickDetector") and v.Color ~= Color3.fromRGB(16,42,220) then
+v.Name = "EasterEgg"
+v.Transparency = 0
+game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = v.CFrame * CFrame.new(0,5,0)
+end
+end
