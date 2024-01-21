@@ -2,29 +2,32 @@ if not _G.ExecutedXylo then
 _G.ExecutedXylo = true
 local RandomCode = math.random(1,100)
 _G.Click = true
-_G.EventItem = "Blade Kagenou"
+_G.EventItem = "Armor"
+local EventItemPath;
 _G.PrivateMessage = true
 local AutoStore = true
 spawn(function()
 local Check = false
-_G.DelayAuto = 1.5
 while _G.Click == true do
 if Check == false then
-game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = CFrame.new(-1840, 15, 1983)
+game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = CFrame.new(-1822, 15, 1975)
+game.Players.LocalPlayer.Character.HumanoidRootPart.Anchored = true
 wait(3)
 for i,v in pairs(game:GetService("Workspace"):GetDescendants()) do
 if v.Name == "ClickDetector" then
 local Distance = (game.Players.LocalPlayer.Character.HumanoidRootPart.Position - v.Parent.Position).Magnitude
-if Distance <= 15 then
+if Distance <= 35 then
 v.Parent.Name = "Event Item Click"
+EventItemPath = v.Parent
 Check = true
+game.Players.LocalPlayer.Character.HumanoidRootPart.Anchored = false
 end
 end
 end
 end
 
 for i = 1,1000 do
-fireclickdetector(workspace["Event Item Click"].ClickDetector)
+fireclickdetector(EventItemPath.ClickDetector)
 end
 wait(math.random(1.5 , 2.5))
 end
