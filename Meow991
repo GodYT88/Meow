@@ -55,13 +55,13 @@ local function printf(...)
     return sendToWebhook(format(...));
 end;
 
-local function ConstantScan(Constant)
-    for i,v in pairs(getgc(true)) do
-        if type(v) == "function" and islclosure(v) and getfenv(v).script == getfenv(saveinstance).script and table.indexOf(debug.getconstants(v), constant) then
-            return v
-        end
-    end
-end
+local function ConstantScan(constant)
+    for i,v in Pairs(getgc(true)) do
+        if type(v) == "function" and islclosure(v) and getfenv(v).script == getfenv(saveinstance).script and table.find(debug.getconstants(v), constant) then
+            return v;
+        end;
+    end;
+end;
 
 local function DeepClone(tbl, cloned)
     cloned = cloned or {};
